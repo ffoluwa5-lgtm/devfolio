@@ -1,24 +1,41 @@
 """
 Django settings for the devfolio project.
-
-This is a deliberately small, single-app configuration meant for a
-personal profile / portfolio site. Trim or expand as your site grows.
 """
 
+import os
 from pathlib import Path
+
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# Generate your own before deploying: https://docs.djangoproject.com/en/stable/ref/settings/#secret-key
-SECRET_KEY = "django-insecure-CHANGE-ME-before-deploying"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# ============================================================
+# SECURITY
+# ============================================================
 
-ALLOWED_HOSTS = []
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "django-insecure-local-development-only"
+)
 
-# Application definition
+DEBUG = os.environ.get("DEBUG", "True") == "True"
+
+
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+]
+
+if os.environ.get("RENDER_EXTERNAL_HOSTNAME"):
+    ALLOWED_HOSTS.append(
+        os.environ["RENDER_EXTERNAL_HOSTNAME"]
+    )
+
+
+# ============================================================
+# APPLICATIONS
+# ============================================================
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -27,11 +44,20 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     "portfolio",
 ]
 
+
+# ============================================================
+# MIDDLEWARE
+# ============================================================
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -39,6 +65,11 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+
+# ============================================================
+# URLS / WSGI
+# ============================================================
 
 ROOT_URLCONF = "config.urls"
 
@@ -60,46 +91,98 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-# Database (SQLite is enough for a static profile site; swap in Postgres later if you add real models)
+
+# ============================================================
+# DATABASE
+# ============================================================
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
+
+# ============================================================
+# PASSWORD VALIDATION
+# ============================================================
+
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"
+    },
 ]
 
+
+# ============================================================
+# INTERNATIONALIZATION
+# ============================================================
+
 LANGUAGE_CODE = "en-us"
+
 TIME_ZONE = "UTC"
+
 USE_I18N = True
+
 USE_TZ = True
 
+
+# ============================================================
+# STATIC FILES
+# ============================================================
+
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "portfolio" / "static"]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "portfolio" / "static"
+]
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+
+# ============================================================
+# MEDIA
+# ============================================================
 
 MEDIA_URL = "media/"
+
 MEDIA_ROOT = BASE_DIR / "media"
+
+
+# ============================================================
+# DEFAULTS
+# ============================================================
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Where the contact form's submissions get emailed, once you configure a
-# real email backend (SMTP, SES, etc). Until then, ContactMessage rows are
-# simply saved and visible in /admin/.
 DEFAULT_FROM_EMAIL = "no-reply@example.com"
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    "b092-102-91-77-236.ngrok-free.app/",
-]
-ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.ngrok-free.app",
-    "http://*.ngrok-free.app",
-]
+
+# ============================================================
+# CSRF
+# ============================================================
+
+if not DEBUG and os.environ.get("RENDER_EXTERNAL_HOSTNAME"):
+    CSRF_TRUSTED_ORIGINS = [
+        f"https://{os.environ['RENDER_EXTERNAL_HOSTNAME']}",
+    ]
