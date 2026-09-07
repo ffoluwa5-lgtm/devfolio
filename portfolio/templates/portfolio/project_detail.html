@@ -1,0 +1,51 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}{{ project.title }} — {{ profile.name }}{% endblock %}
+
+{% block content %}
+  <section class="detail-hero">
+    <div class="container">
+      <a href="{% url 'index' %}#projects" class="back mono">← Back to projects</a>
+      <p class="eyebrow">{{ project.year }}{% if project.featured %} · Featured{% endif %}</p>
+      <h1 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight:700;">{{ project.title }}</h1>
+      <p style="color:var(--muted); max-width:60ch; margin-top:0.8rem;">{{ project.summary }}</p>
+
+      <div class="detail-media">
+        {% if project.image %}
+          <img src="{{ project.image.url }}" alt="{{ project.title }} screenshot">
+        {% else %}
+          {{ project.title|slice:":1" }}
+        {% endif %}
+      </div>
+
+      <div class="detail-body">
+        <div>
+          {% for paragraph in project.description.splitlines %}
+            {% if paragraph %}<p>{{ paragraph }}</p>{% endif %}
+          {% endfor %}
+
+          {% if project.feature_list %}
+          <h4 class="mono" style="color:var(--muted); font-size:0.78rem; margin: 2rem 0 1rem;">KEY FEATURES</h4>
+          <ul style="color:var(--muted); padding-left:1.1rem;">
+            {% for feature in project.feature_list %}<li style="margin-bottom:0.4rem;">{{ feature }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+
+        <aside class="detail-side">
+          <h4>TECH STACK</h4>
+          <div class="tech-tags" style="margin-bottom:1.6rem;">
+            {% for tech in project.tech_list %}<span>{{ tech }}</span>{% endfor %}
+          </div>
+          {% if project.github_url or project.live_url %}
+          <h4>LINKS</h4>
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            {% if project.github_url %}<a href="{{ project.github_url }}" class="btn btn-ghost">GitHub Repo</a>{% endif %}
+            {% if project.live_url %}<a href="{{ project.live_url }}" class="btn btn-primary">Live Demo</a>{% endif %}
+          </div>
+          {% endif %}
+        </aside>
+      </div>
+    </div>
+  </section>
+{% endblock %}

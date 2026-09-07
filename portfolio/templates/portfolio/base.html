@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ profile.name }} — {{ profile.title }}{% endblock %}</title>
+  <meta name="description" content="{{ profile.tagline }}">
+  <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container">
+      <a href="{% url 'index' %}" class="brand">{{ profile.name|default:"Portfolio" }}<span>.</span></a>
+      <div class="nav-links">
+        <a href="{% url 'index' %}#about">About</a>
+        <a href="{% url 'index' %}#skills">Skills</a>
+        <a href="{% url 'index' %}#projects">Projects</a>
+        <a href="{% url 'index' %}#experience">Experience</a>
+        <a href="{% url 'index' %}#services">Services</a>
+        <a href="{% url 'index' %}#contact" class="nav-cta">Contact</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu">menu</button>
+    </div>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem; width:100%;">
+      <span>&copy; {{ profile.name }}</span>
+      <span>Built with Django</span>
+    </div>
+  </footer>
+
+  <script src="{% static 'portfolio/js/main.js' %}"></script>
+</body>
+</html>

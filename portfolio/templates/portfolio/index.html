@@ -1,0 +1,197 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <section class="hero">
+    <div class="container hero-inner" style="display:grid; grid-template-columns:1.3fr 0.9fr; gap:3rem; align-items:center;">
+      <div>
+        <p class="eyebrow mono">Available for freelance & remote work</p>
+        <h1>{{ profile.name }}<br><span class="accent">{{ profile.title }}</span></h1>
+        <p class="tagline">{{ profile.tagline }}</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-ghost">Contact Me</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>{{ profile.years_experience }}+</strong><span>YEARS EXPERIENCE</span></div>
+          <div><strong>{{ profile.projects_completed }}+</strong><span>PROJECTS SHIPPED</span></div>
+          <div><strong>{{ profile.location|default:"Remote" }}</strong><span>BASED IN</span></div>
+        </div>
+      </div>
+      <div class="hero-card reveal">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <pre><span class="k">class</span> Developer:
+    <span class="k">def</span> stack(self):
+        <span class="k">return</span> [
+{% for group in skill_groups %}{% for skill in group.items|slice:":3" %}            <span class="s">"{{ skill.name }}"</span>,
+{% endfor %}{% endfor %}        ]
+
+    <span class="k">def</span> status(self):
+        <span class="k">return</span> <span class="s">"shipping"</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="eyebrow">About</p>
+          <div class="about-copy">
+            {% for paragraph in profile.about.splitlines %}
+              {% if paragraph %}<p>{{ paragraph }}</p>{% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="about-meta reveal">
+          <dl>
+            <div class="row"><dt>Location</dt><dd>{{ profile.location }}</dd></div>
+            <div class="row"><dt>Email</dt><dd>{{ profile.email }}</dd></div>
+            {% if profile.phone %}<div class="row"><dt>Phone</dt><dd>{{ profile.phone }}</dd></div>{% endif %}
+            <div class="row"><dt>Focus</dt><dd>Backend / Django</dd></div>
+            <div class="row"><dt>Status</dt><dd>Open to work</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Skills</p>
+        <h2>Tools I build with</h2>
+        <p>A working toolkit spanning backend systems, APIs, and the front end that talks to them.</p>
+      </div>
+      <div class="skills-grid">
+        {% for group in skill_groups %}
+        <div class="skill-group reveal">
+          <h3>{{ group.label }}</h3>
+          {% for skill in group.items %}
+          <div class="skill-item" style="--fill: {{ skill.proficiency }}%;">
+            <div class="label"><span>{{ skill.name }}</span><span>{{ skill.proficiency }}%</span></div>
+            <div class="meter"><div></div></div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Projects</p>
+        <h2>Selected work</h2>
+        <p>A mix of client freelance work, remote team projects, and things I've built for myself.</p>
+      </div>
+      <div class="project-grid">
+        {% for project in projects %}
+        <article class="project-card reveal">
+          <div class="project-media">
+            {% if project.image %}
+              <img src="{{ project.image.url }}" alt="{{ project.title }} screenshot">
+            {% else %}
+              {{ project.title|slice:":1" }}
+            {% endif %}
+          </div>
+          <div class="project-body">
+            <div class="project-top">
+              <h3>{{ project.title }}</h3>
+              <span class="year mono">{{ project.year }}</span>
+            </div>
+            {% if project.featured %}<span class="featured-badge mono">★ FEATURED</span>{% endif %}
+            <p class="summary">{{ project.summary }}</p>
+            <div class="tech-tags">
+              {% for tech in project.tech_list %}<span>{{ tech }}</span>{% endfor %}
+            </div>
+            <div class="project-links">
+              <a href="{% url 'project_detail' project.slug %}">Details</a>
+              {% if project.github_url %}<a href="{{ project.github_url }}">GitHub</a>{% endif %}
+              {% if project.live_url %}<a href="{{ project.live_url }}">Live Demo</a>{% endif %}
+            </div>
+          </div>
+        </article>
+        {% empty %}
+        <p style="color:var(--muted);">No projects yet — add some from /admin/.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Experience</p>
+        <h2>My journey so far</h2>
+      </div>
+      <div class="timeline">
+        {% for job in experience %}
+        <div class="timeline-item reveal">
+          <span class="period">{{ job.period }}</span>
+          <h3>{{ job.role }}</h3>
+          <p class="org">{{ job.organisation }}{% if job.location %} · {{ job.location }}{% endif %}</p>
+          <ul>
+            {% for bullet in job.bullet_list %}<li>{{ bullet }}</li>{% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Services</p>
+        <h2>What I can help with</h2>
+      </div>
+      <div class="services-grid">
+        {% for service in services %}
+        <div class="service-card reveal">
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's build something</h2>
+        <p>Have a project in mind, or just want to talk shop? Send a message or reach out directly.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="reveal">
+          {% if messages %}
+            {% for message in messages %}<div class="alert">{{ message }}</div>{% endfor %}
+          {% endif %}
+          <form method="post" class="contact-form" action="{% url 'index' %}">
+            {% csrf_token %}
+            {{ contact_form.name }}
+            {% if contact_form.name.errors %}<ul class="errorlist">{{ contact_form.name.errors }}</ul>{% endif %}
+            {{ contact_form.email }}
+            {% if contact_form.email.errors %}<ul class="errorlist">{{ contact_form.email.errors }}</ul>{% endif %}
+            {{ contact_form.message }}
+            {% if contact_form.message.errors %}<ul class="errorlist">{{ contact_form.message.errors }}</ul>{% endif %}
+            <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send Message</button>
+          </form>
+        </div>
+        <div class="contact-links reveal">
+          {% for link in social_links %}
+          <a href="{{ link.url }}" class="contact-link">
+            <span>{{ link.label }}</span>
+            <span class="arrow">→</span>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
