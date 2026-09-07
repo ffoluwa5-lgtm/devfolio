@@ -1,0 +1,389 @@
+[
+{
+  "model": "portfolio.profile",
+  "pk": 1,
+  "fields": {
+    "name": "Owoeye Fiyinfoluwa Orire",
+    "title": "Full-Stack Developer & Software Engineer",
+    "tagline": "I design and build backend systems and full-stack web applications — from database models and REST APIs to the interfaces people use every day.",
+    "about": "I'm a backend-focused software developer with hands-on experience building web applications in Python and Django, including database modelling, authentication systems, and CRUD application development. I've since broadened into full-stack development with React, Next.js, and Node.js, working remotely on a development team.\n\nI'm currently building an automated trading bot that integrates external APIs, alongside ongoing freelance backend projects. I bring a strong analytical foundation from a BSc in Physics with Electronics, a keen interest in API design and scalable backend architecture, and a track record of working independently and reliably in remote environments.",
+    "location": "Abuja, Nigeria",
+    "email": "Ffoluwa5@gmail.com",
+    "phone": "0810 573 7397",
+    "years_experience": 2,
+    "projects_completed": 6,
+    "avatar": "",
+    "resume": ""
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 1,
+  "fields": {
+    "name": "Python",
+    "category": "language",
+    "proficiency": 90,
+    "order": 0
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 2,
+  "fields": {
+    "name": "Django",
+    "category": "language",
+    "proficiency": 90,
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 3,
+  "fields": {
+    "name": "JavaScript",
+    "category": "language",
+    "proficiency": 78,
+    "order": 2
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 4,
+  "fields": {
+    "name": "React",
+    "category": "language",
+    "proficiency": 72,
+    "order": 3
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 5,
+  "fields": {
+    "name": "Next.js",
+    "category": "language",
+    "proficiency": 70,
+    "order": 4
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 6,
+  "fields": {
+    "name": "Node.js",
+    "category": "language",
+    "proficiency": 68,
+    "order": 5
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 7,
+  "fields": {
+    "name": "SQL / Relational DB Design",
+    "category": "database",
+    "proficiency": 82,
+    "order": 6
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 8,
+  "fields": {
+    "name": "NoSQL Concepts",
+    "category": "database",
+    "proficiency": 55,
+    "order": 7
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 9,
+  "fields": {
+    "name": "Git & GitHub",
+    "category": "tools",
+    "proficiency": 85,
+    "order": 8
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 10,
+  "fields": {
+    "name": "REST API Design",
+    "category": "tools",
+    "proficiency": 85,
+    "order": 9
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 11,
+  "fields": {
+    "name": "Testing & Debugging",
+    "category": "tools",
+    "proficiency": 75,
+    "order": 10
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 12,
+  "fields": {
+    "name": "Data Analysis (Excel, Sheets)",
+    "category": "other",
+    "proficiency": 65,
+    "order": 11
+  }
+},
+{
+  "model": "portfolio.project",
+  "pk": 1,
+  "fields": {
+    "title": "FFX Market",
+    "slug": "ffx-market",
+    "summary": "Forex market data and trading dashboard.",
+    "description": "A dashboard for tracking forex market data in real time, built to feed the trading automation platform. Replace this with your real screenshots, description, and links from the admin.",
+    "image": "projects/image_2026-09-06_14-00-58.png",
+    "tech_stack": "Python, Django, PostgreSQL, REST APIs",
+    "features": "Real-time price feed\r\nHistorical charting\r\nAlerting on price thresholds",
+    "github_url": "",
+    "live_url": "",
+    "featured": true,
+    "order": 0,
+    "year": "2026"
+  }
+},
+{
+  "model": "portfolio.project",
+  "pk": 2,
+  "fields": {
+    "title": "Trading Bot Automation Platform",
+    "slug": "trading-bot-automation-platform",
+    "summary": "Automated trading bot integrating external market APIs.",
+    "description": "An automated trading bot using Python and Django, integrating third-party APIs for real-time market data and trade execution, with backend architecture for data processing and automation logic.",
+    "image": "projects/image_2026-09-06_13-53-54.png",
+    "tech_stack": "Python, Django, Celery, REST APIs",
+    "features": "Automated trade execution\r\nReal-time data ingestion\r\nPerformance and reliability testing",
+    "github_url": "",
+    "live_url": "",
+    "featured": true,
+    "order": 1,
+    "year": "Ongoing"
+  }
+},
+{
+  "model": "portfolio.project",
+  "pk": 3,
+  "fields": {
+    "title": "Banking / Asset Management System",
+    "slug": "banking-asset-management-system",
+    "summary": "Backend system for tracking accounts and assets.",
+    "description": "Placeholder project — replace with your real banking / asset management build: description, tech stack, and screenshots.",
+    "image": "",
+    "tech_stack": "Django, PostgreSQL, DRF",
+    "features": "Account modelling\nTransaction history\nRole-based access",
+    "github_url": "",
+    "live_url": "",
+    "featured": false,
+    "order": 2,
+    "year": "2025"
+  }
+},
+{
+  "model": "portfolio.project",
+  "pk": 4,
+  "fields": {
+    "title": "Apartment Booking System",
+    "slug": "apartment-booking-system",
+    "summary": "Booking platform for short-let apartments.",
+    "description": "Placeholder project — replace with your real apartment booking build: description, tech stack, and screenshots.",
+    "image": "",
+    "tech_stack": "Django, PostgreSQL, HTMX",
+    "features": "Availability calendar\nBooking & payments flow\nHost dashboard",
+    "github_url": "",
+    "live_url": "",
+    "featured": false,
+    "order": 3,
+    "year": "2025"
+  }
+},
+{
+  "model": "portfolio.project",
+  "pk": 5,
+  "fields": {
+    "title": "Restaurant / Cafe Platform",
+    "slug": "restaurant-cafe-platform",
+    "summary": "Ordering platform for a restaurant or cafe.",
+    "description": "Placeholder project — replace with your real restaurant/cafe platform build: description, tech stack, and screenshots.",
+    "image": "",
+    "tech_stack": "Django, React, PostgreSQL",
+    "features": "Menu management\nOnline ordering\nOrder tracking",
+    "github_url": "",
+    "live_url": "",
+    "featured": false,
+    "order": 4,
+    "year": "2024"
+  }
+},
+{
+  "model": "portfolio.experience",
+  "pk": 1,
+  "fields": {
+    "role": "Software Developer — Personal Project",
+    "organisation": "Independent",
+    "location": "",
+    "start_date": "May 2026",
+    "end_date": "",
+    "description": "Developing a web application using Python and Django, building on backend architecture and database design skills from previous roles\nDesigning and implementing RESTful API endpoints to support core application features\nBuilding database models and user authentication for the application\nTesting and iterating on features as the project evolves",
+    "order": 0
+  }
+},
+{
+  "model": "portfolio.experience",
+  "pk": 2,
+  "fields": {
+    "role": "Personal / Administrative Assistant",
+    "organisation": "Independent",
+    "location": "",
+    "start_date": "January 2026",
+    "end_date": "May 2026",
+    "description": "Provided administrative and technical support to support business operations\nManaged documentation and scheduling for ongoing projects\nAssisted with digital tasks and website updates\nSupported research and data organisation for decision-making",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.experience",
+  "pk": 3,
+  "fields": {
+    "role": "Full Stack Developer (Remote)",
+    "organisation": "Spay Resources New World Limited",
+    "location": "",
+    "start_date": "June 2025",
+    "end_date": "December 2025",
+    "description": "Developed and maintained web application features using React, Next.js, and Node.js\nBuilt and integrated RESTful APIs to connect frontend interfaces with backend services\nCollaborated with a remote development team to plan, build, and ship features on schedule\nImplemented responsive UI components and resolved bugs to improve application performance and reliability",
+    "order": 2
+  }
+},
+{
+  "model": "portfolio.experience",
+  "pk": 4,
+  "fields": {
+    "role": "Digital Marketing & Website Manager",
+    "organisation": "Independent / Freelance",
+    "location": "",
+    "start_date": "January 2025",
+    "end_date": "May 2025",
+    "description": "Managed website content and updates to keep information accurate and current\nImproved online visibility using digital marketing tools and techniques\nMonitored engagement metrics to inform content and outreach decisions\nMaintained business website systems and resolved day-to-day issues",
+    "order": 3
+  }
+},
+{
+  "model": "portfolio.experience",
+  "pk": 5,
+  "fields": {
+    "role": "Freelance Software Developer (Python/Django)",
+    "organisation": "Freelance",
+    "location": "",
+    "start_date": "May 2024",
+    "end_date": "",
+    "description": "Developed backend web applications for clients using Python and Django\nDesigned database models and implemented authentication systems\nBuilt CRUD applications and user management systems\nTested and optimised application performance",
+    "order": 4
+  }
+},
+{
+  "model": "portfolio.service",
+  "pk": 1,
+  "fields": {
+    "title": "Web Development",
+    "description": "End-to-end web apps built with Django — from data model to deployed UI.",
+    "order": 0
+  }
+},
+{
+  "model": "portfolio.service",
+  "pk": 2,
+  "fields": {
+    "title": "Backend Development",
+    "description": "Database design, authentication, and business logic that scales cleanly.",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.service",
+  "pk": 3,
+  "fields": {
+    "title": "API Development",
+    "description": "RESTful APIs and third-party integrations, documented and tested.",
+    "order": 2
+  }
+},
+{
+  "model": "portfolio.service",
+  "pk": 4,
+  "fields": {
+    "title": "Trading Automation",
+    "description": "Bots and tools that integrate market data APIs and execute logic reliably.",
+    "order": 3
+  }
+},
+{
+  "model": "portfolio.service",
+  "pk": 5,
+  "fields": {
+    "title": "Database Systems",
+    "description": "Relational schema design, migrations, and query performance tuning.",
+    "order": 4
+  }
+},
+{
+  "model": "portfolio.sociallink",
+  "pk": 1,
+  "fields": {
+    "platform": "email",
+    "label": "Email",
+    "url": "mailto:Ffoluwa5@gmail.com",
+    "order": 0
+  }
+},
+{
+  "model": "portfolio.sociallink",
+  "pk": 2,
+  "fields": {
+    "platform": "github",
+    "label": "GitHub",
+    "url": "https://github.com/yourusername",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.sociallink",
+  "pk": 3,
+  "fields": {
+    "platform": "linkedin",
+    "label": "LinkedIn",
+    "url": "https://linkedin.com/in/yourusername",
+    "order": 2
+  }
+},
+{
+  "model": "portfolio.sociallink",
+  "pk": 4,
+  "fields": {
+    "platform": "telegram",
+    "label": "Telegram",
+    "url": "https://t.me/yourusername",
+    "order": 3
+  }
+},
+{
+  "model": "portfolio.sociallink",
+  "pk": 5,
+  "fields": {
+    "platform": "whatsapp",
+    "label": "WhatsApp",
+    "url": "https://wa.me/2348105737397",
+    "order": 4
+  }
+}
+]
