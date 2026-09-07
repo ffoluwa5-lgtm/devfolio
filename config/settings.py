@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
+    "storages",
     "portfolio",
 ]
 
@@ -143,16 +143,32 @@ USE_TZ = True
 # ============================================================
 
 STATIC_URL = "static/"
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = [
-    BASE_DIR / "portfolio" / "static"
+    BASE_DIR / "portfolio" / "static",
 ]
+
+
+# ============================================================
+# SUPABASE STORAGE / MEDIA
+# ============================================================
+
+AWS_ACCESS_KEY_ID = os.environ.get("SUPABASE_STORAGE_ACCESS_KEY")
+AWS_SECRET_ACCESS_KEY = os.environ.get("SUPABASE_STORAGE_SECRET_KEY")
+
+AWS_STORAGE_BUCKET_NAME = "media"
+AWS_S3_ENDPOINT_URL = os.environ.get("SUPABASE_STORAGE_ENDPOINT")
+
+AWS_S3_REGION_NAME = "eu-west-1"
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_AUTH = False
 
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "storages.backends.s3.S3Storage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
@@ -164,8 +180,7 @@ STORAGES = {
 # MEDIA
 # ============================================================
 
-MEDIA_URL = "media/"
-
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 
