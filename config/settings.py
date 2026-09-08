@@ -166,6 +166,14 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 AWS_QUERYSTRING_AUTH = False
 
+# Public Supabase Storage URL
+SUPABASE_PROJECT_REF = "xptwxharaagkjzsuzrkz"
+
+AWS_S3_CUSTOM_DOMAIN = (
+    f"{SUPABASE_PROJECT_REF}.supabase.co"
+    f"/storage/v1/object/public/{AWS_STORAGE_BUCKET_NAME}"
+)
+
 STORAGES = {
     "default": {
         "BACKEND": "storages.backends.s3.S3Storage",
