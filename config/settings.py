@@ -150,10 +150,6 @@ STATICFILES_DIRS = [
 ]
 
 
-# ============================================================
-# SUPABASE STORAGE / MEDIA
-# ============================================================
-
 AWS_ACCESS_KEY_ID = os.environ.get("SUPABASE_STORAGE_ACCESS_KEY")
 AWS_SECRET_ACCESS_KEY = os.environ.get("SUPABASE_STORAGE_SECRET_KEY")
 
@@ -166,7 +162,6 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 AWS_QUERYSTRING_AUTH = False
 
-# Public Supabase Storage URL
 SUPABASE_PROJECT_REF = "xptwxharaagkjzsuzrkz"
 
 AWS_S3_CUSTOM_DOMAIN = (
@@ -182,7 +177,6 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-
 
 # ============================================================
 # MEDIA
